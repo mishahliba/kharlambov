@@ -5,11 +5,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id = "commadelimiter" class="com.di.entity.CommaDelimiter"></bean>
-    <bean id="colondelimiter" class="com.di.entity.ColonDelimiter"></bean>
-    <bean id = "delimiterService" class="com.di.service.DelimiterService" >
-        <property name="delimiter">
-            <ref bean="colondelimiter"></ref>
-        </property>
+    <bean id = "ubercabagency" class="com.di.entity.cabentity.UberCabAgency"></bean>
+    <bean id = "yandexcabagency" class="com.di.entity.cabentity.YandexCabAgency"></bean>
+    <bean id="ryanairplaneagency" class="com.di.entity.planeentity.RyanairPlaneAgency"></bean>
+    <bean id="wizzplaneagency" class="com.di.entity.planeentity.WizzPlaneAgency"></bean>
+
+    
+    <bean id="employee" class="com.di.entity.Employee">
+        <property name="innerCode" value="123"></property>
+    </bean>
+
+    <bean id = "reservationinfo" class="com.di.entity.infoentity.ReservationInfo">
+        <constructor-arg><ref bean="employee"></ref></constructor-arg>
+    </bean>
+    <bean id = "reservationService" class="com.di.service.ReservationService" >
+        <property name="cabAgency"><ref bean="ubercabagency"></ref></property>
+        <property name="planeAgency"><ref bean="ryanairplaneagency"></ref> </property>
+        <property name="reservationInfo"><ref bean="reservationinfo"></ref> </property>
     </bean>
 </beans>
